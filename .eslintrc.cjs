@@ -5,7 +5,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
-    "@feature-sliced"
+    "@feature-sliced",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
@@ -13,13 +13,13 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": [
       "warn",
-      { allowConstantExport: true }
+      { allowConstantExport: true },
     ],
     "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
   },
   parserOptions: {
-    "sourceType": "module",
-    "ecmaVersion": "latest"
-  }
+    sourceType: "module",
+    ecmaVersion: "latest",
+  },
 };
