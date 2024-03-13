@@ -22,7 +22,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -33,7 +33,7 @@
 .increment:hover,
 .decrement:hover {
     background-color: #f5f5f5;
-    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-7px);
 }
 
@@ -78,7 +78,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -86,7 +86,7 @@
 .asyncIncrementContainer__button:hover,
 .asyncDecrementContainer__button:hover {
     background-color: #f5f5f5;
-    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-7px);
 }
 
