@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  background-color: white;
+
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  letter-spacing: normal;
+}
+
+.textContainer {
+  width: 700px;
+
+  margin: 24px 8px;
+}

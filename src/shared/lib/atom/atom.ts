@@ -6,7 +6,15 @@ export type Atom<T> = {
 
 export type AtomListener<T> = (next: T, prev: T) => void;
 
-export const atom = <T>(init: T): Atom<T> => {
+export type AtomConfig<T> = {
+  comparator?: (prev: T, next: T) => boolean;
+};
+
+const defaultComparator = <T>(prev: T, next: T) => prev === next;
+
+export const atom = <T>(init: T, config?: AtomConfig<T>): Atom<T> => {
+  const comparator = config?.comparator ?? defaultComparator;
+
   const listeners = new Set<AtomListener<T>>();
 
   let current = init;
@@ -20,6 +28,10 @@ export const atom = <T>(init: T): Atom<T> => {
   };
 
   getter.set = (next: T) => {
+    if (comparator(current, next)) {
+      return current;
+    }
+
     const prev = current;
 
     current = next;

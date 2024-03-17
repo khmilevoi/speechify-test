@@ -1,15 +1,19 @@
 import "./index.css";
 
-import { FunctionComponent } from "react";
+import { FunctionComponent, useRef } from "react";
 
-import { ReaderPage } from "@/pages/reader";
+import { MainPage } from "@/pages/main";
+import { Reader } from "@/features/reader";
 
 import * as styles from "./styles.module.css";
 
 export const App: FunctionComponent = () => {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <div className={styles.container}>
-      <ReaderPage.Layout />
+      <MainPage.Layout ref={contentRef} />
+      <Reader contentRef={contentRef} />
     </div>
   );
 };
