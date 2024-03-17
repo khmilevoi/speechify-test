@@ -4,6 +4,7 @@ import { sleep } from "@/shared/lib/sleep.ts";
 export const $num = atom(0);
 
 export const $num2 = atom(10);
+
 export const $double = computed(() => {
   return $num() * $num() + $num2() * $num2();
 });

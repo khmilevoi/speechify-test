@@ -13,7 +13,11 @@ export const computed = <T>(fn: () => T): Atom<T> => {
     }
 
     dep.on(() => {
-      computedAtom.set(fn());
+      const nextValue = fn();
+
+      if (nextValue !== computedAtom()) {
+        computedAtom.set(nextValue);
+      }
     });
   });
 

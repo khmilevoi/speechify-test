@@ -1,7 +1,7 @@
 import { Atom, atom } from "./atom.ts";
 
 export type Effect<Result, Args extends unknown[]> = {
-  (...args: Args): Promise<Result>;
+  (...args: Args): Promise<Result | null>;
   onCall(cb: CallEffectListener<Args>): () => void;
   onError(cb: ErrorEffectListener): () => void;
   onDone(cb: DoneEffectListener<Result>): () => void;
@@ -18,14 +18,13 @@ export type CallEffectListener<Args extends unknown[]> = (
 export type ErrorEffectListener = (error: Error) => void;
 export type DoneEffectListener<Result> = (result: Result) => void;
 
-export type EffectApi<Result, Args extends unknown[]> = {
+export type EffectApi<Result> = {
   signal: AbortSignal;
-  args: Args;
   prevData: Result | null;
 };
 
 export const effect = <Result, Args extends unknown[]>(
-  cb: (api: EffectApi<Result, Args>) => Promise<Result>,
+  cb: (api: EffectApi<Result>, ...args: Args) => Promise<Result>,
 ): Effect<Result, Args> => {
   const $isLoading = atom(false);
   const $error = atom<Error | null>(null);
@@ -56,13 +55,12 @@ export const effect = <Result, Args extends unknown[]>(
       $isLoading.set(true);
       $error.set(null);
 
-      const effectApi: EffectApi<Result, Args> = {
+      const effectApi: EffectApi<Result> = {
         signal: _abortController.signal,
-        args,
         prevData: $data(),
       };
 
-      const result = await cb(effectApi);
+      const result = await cb(effectApi, ...args);
 
       $data.set(result);
       $isLoading.set(false);
@@ -82,7 +80,7 @@ export const effect = <Result, Args extends unknown[]>(
       }
 
       if (_abortController.signal.aborted) {
-        return;
+        return null;
       }
 
       $error.set(effectError);
