@@ -39,16 +39,18 @@ export const Reader = memo(({ contentRef }: ReaderProps) => {
   }, [data]);
 
   useEffect(() => {
-    const audio = audioRef.current;
+    return model.$isPlaying.on((playing) => {
+      const audio = audioRef.current;
 
-    if (audio) {
-      if (isPlaying) {
-        audio.play();
-      } else {
-        audio.pause();
+      if (audio) {
+        if (playing) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
       }
-    }
-  }, [isPlaying]);
+    });
+  }, [model.$isPlaying]);
 
   return (
     <div className={`${styles.container} ${isLoading ? styles.loading : ""}`}>
