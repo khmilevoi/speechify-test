@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server:build":  "swc ./backend/index.ts -o ./dist/server.js -w",
-    "server:start": "node ./dist/server.js",
+    "server:build": "swc ./backend/index.ts -o ./dist/server.js",
+    "server:run": "node ./dist/server.js",
+    "server:start": "pnpm run server:build && pnpm run server:run",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "precommit": "pnpm run lint && pnpm run format",

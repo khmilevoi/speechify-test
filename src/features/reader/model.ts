@@ -1,5 +1,6 @@
 import { createReader } from "@/entities/reader";
 import { createSpeech } from "@/entities/speech";
+import { atom, computed } from "@/shared/lib/atom";
 
 export const createModel = () => {
   const reader = createReader();
@@ -11,8 +12,14 @@ export const createModel = () => {
     }
   });
 
+  const $isLoading = computed(() => reader.$isParsing() || speech.$isLoading());
+
+  const $isPlaying = atom(false);
+
   return {
     reader,
     speech,
+    $isLoading,
+    $isPlaying,
   };
 };

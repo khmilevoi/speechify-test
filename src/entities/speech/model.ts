@@ -21,9 +21,7 @@ export const createSpeech = () => {
       return null;
     }
 
-    SpeechApi.service.get(speechText).then((value) => {
-      console.log(value);
-    });
+    SpeechApi.service.get(speechText);
   });
 
   const $isLoading = SpeechApi.service.get.$isLoading;

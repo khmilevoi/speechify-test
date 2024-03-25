@@ -1,0 +1,109 @@
+.container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  /*opacity: 0.5;*/
+  transition: opacity 0.2s;
+}
+
+.container:hover {
+  opacity: 1;
+}
+
+.controls {
+  padding: 4px;
+
+  background-color: black;
+
+  border-radius: 12px;
+
+  position: relative;
+}
+
+.loader {
+  width: 32px;
+  height: 32px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  position: absolute;
+
+  opacity: 0;
+}
+
+.play {
+  width: 32px;
+  height: 32px;
+
+  position: relative;
+
+  background-color: transparent;
+  color: transparent;
+
+  outline: none;
+  border: none;
+
+  transition: 0.1s;
+
+  cursor: pointer;
+}
+
+.play:after,
+.play:before {
+  content: "";
+
+  display: block;
+  position: absolute;
+
+  width: 16px;
+  height: 4px;
+
+  border-radius: 999px;
+
+  top: 50%;
+  right: 5px;
+
+  transition: 0.1s;
+
+  background-color: white;
+
+  transform-origin: right center;
+}
+
+.play:after {
+  transform: rotateZ(30deg) translateY(-50%);
+  right: 8px;
+}
+
+.play:before {
+  transform: rotateZ(-30deg) translateY(calc(-50% - 1.6px));
+}
+
+.play.playing:before,
+.play.playing:after {
+  top: 50%;
+  transform: rotateZ(90deg) translateY(-50%);
+  transform-origin: initial;
+}
+
+.play.playing:after {
+  left: 4px;
+}
+
+.play.playing:before {
+  right: 4px;
+}
+
+.loading {
+  opacity: 1;
+
+  .loader {
+    opacity: 1;
+  }
+
+  .play {
+    opacity: 0;
+  }
+}

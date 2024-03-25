@@ -7,9 +7,9 @@ export const prepareSpeech = (nodes: ReaderNode[]) => {
 export const stringifyNode = (node: ReaderNode) => {
   switch (node.type) {
     case "paragraph":
-      return `<p>${stringifySentence(node.content)}</p>`;
-    case "heading":
       return `<p>${stringifySentence(node.content)}</p><break time="200ms"/>`;
+    case "heading":
+      return `<p>${stringifySentence(node.content)}</p><break time="400ms"/>`;
     case "unknown":
       return `${stringifySentence(node.content)}`;
   }
@@ -37,7 +37,7 @@ const stringifySentence = (sentence: string) => {
         result += `<s>${escape(sentence)}</s>`;
         break;
       default:
-        result += escape(sentence);
+        result += `${escape(sentence)}.`;
     }
   }
 
